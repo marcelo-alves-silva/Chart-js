@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+       .chart-container {
+            width: 50%;
+            margin: auto;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="lineChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="barChart"></canvas>
+    </div>
+    <script>
+        let lineChartData = {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [30, 29, 28, 25, 22, 23],
+                borderColor: 'orange',
+                fill: false
+            }, {
+                label: 'Humidade',
+                data: [80, 82, 80, 85, 80, 83],
+                borderColor: 'blue',
+                fill: false
+            }]
+        };
+
+        let barChartData = {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+            datasets: [{
+                label: 'Temperatura Média',
+                data: [22, 24, 27, 23, 20, 18],
+                backgroundColor: 'orange',
+                borderColor: 'orange',
+                borderWidth: 1
+            }, {
+                label: 'Humidade Média',
+                data: [90, 89, 93, 87, 88, 82],
+                backgroundColor: 'blue',
+                borderColor: 'blue',
+                borderWidth: 1
+            }]
+        };
+
+        let lineChartConfig = {
+            type: 'line',
+            data: lineChartData,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Hora'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: ''
+                        }
+                    }
+                }
+            }
+        };
+
+        let barChartConfig = {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Mês'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: ''
+                        }
+                    }
+                }
+            }
+        };
+
+        let lineChart = new Chart(document.getElementById('lineChart'), lineChartConfig);
+        let barChart = new Chart(document.getElementById('barChart'), barChartConfig);
+    </script>
+</body>
+</html>
